@@ -1,0 +1,21 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Gizmo0320 <gizmo0320@unleveledgaming.com>
+Date: Fri, 4 Oct 2024 09:44:25 -0500
+Subject: [PATCH] Neil Rebrand
+
+
+diff --git a/src/main/java/io/papermc/paper/ServerBuildInfo.java b/src/main/java/io/papermc/paper/ServerBuildInfo.java
+index 7196594e07af19a14c320d77df893978525fe386..6fe2b8d77b8f09ed016853add86dbe03c14e0c60 100644
+--- a/src/main/java/io/papermc/paper/ServerBuildInfo.java
++++ b/src/main/java/io/papermc/paper/ServerBuildInfo.java
+@@ -33,6 +33,10 @@ public interface ServerBuildInfo {
+     Key BRAND_PURPUR_ID = Key.key("purpurmc", "purpur");
+     // Purpur end
+ 
++
++    //Neil Start
++    Key BRAND_NEIL_ID = Key.key("envarcade", "neil");
++
+     /**
+      * Gets the {@code ServerBuildInfo}.
+      *

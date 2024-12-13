@@ -1,0 +1,72 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Gizmo0320 <gizmo0320@unleveledgaming.com>
+Date: Fri, 4 Oct 2024 09:43:12 -0500
+Subject: [PATCH] Neil Rebrand
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index b053160ee0faa550569a8b2273e38f48567ddbc7..415ee70c1a7b3841464001c480e4f5f995be820d 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -13,7 +13,7 @@ configurations.named(log4jPlugins.compileClasspathConfigurationName) {
+ val alsoShade: Configuration by configurations.creating
+ 
+ dependencies {
+-    implementation(project(":purpur-api")) // Pufferfish // Paper // Purpur
++    implementation(project(":neil-api")) // Pufferfish // Paper // Purpur //Neil
+     // Paper start
+     implementation("org.jline:jline-terminal-jansi:3.21.0")
+     implementation("net.minecrell:terminalconsoleappender:1.3.0")
+@@ -103,14 +103,14 @@ tasks.jar {
+         val gitBranch = git("rev-parse", "--abbrev-ref", "HEAD").getText().trim() // Paper
+         attributes(
+             "Main-Class" to "org.bukkit.craftbukkit.Main",
+-            "Implementation-Title" to "Purpur", // Pufferfish // Purpur
++            "Implementation-Title" to "Neil", // Pufferfish // Purpur
+             "Implementation-Version" to implementationVersion,
+             "Implementation-Vendor" to date, // Paper
+-            "Specification-Title" to "Purpur", // Pufferfish // Purpur
++            "Specification-Title" to "Neil", // Pufferfish // Purpur
+             "Specification-Version" to project.version,
+-            "Specification-Vendor" to "Purpur Team", // Pufferfish // Purpur
+-            "Brand-Id" to "purpurmc:purpur", // Pufferfish // Purpur
+-            "Brand-Name" to "Purpur", // Pufferfish // Purpur
++            "Specification-Vendor" to "EnV Arcade", // Pufferfish // Purpur
++            "Brand-Id" to "envarcade:neil", // Pufferfish // Purpur
++            "Brand-Name" to "Neil", // Pufferfish // Purpur
+             "Build-Number" to (build ?: ""),
+             "Build-Time" to Instant.now().toString(),
+             "Git-Branch" to gitBranch, // Paper
+diff --git a/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java b/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
+index 3099c21ee589acf6edff5903a23673adf489024f..d1a95b4d885abdd9fad3050dc315f73442699fd7 100644
+--- a/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
++++ b/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
+@@ -33,6 +33,7 @@ public record ServerBuildInfoImpl(
+     private static final String BRAND_PAPER_NAME = "Paper";
+     private static final String BRAND_PUFFERFISH_NAME = "Pufferfish"; // Purpur
+     private static final String BRAND_PURPUR_NAME = "Purpur"; // Purpur
++    private static final String BRAND_NEIL_NAME = "Neil"; // Neil
+ 
+     private static final String BUILD_DEV = "DEV";
+ 
+@@ -44,9 +45,9 @@ public record ServerBuildInfoImpl(
+         this(
+             getManifestAttribute(manifest, ATTRIBUTE_BRAND_ID)
+                 .map(Key::key)
+-                .orElse(BRAND_PURPUR_ID), // Purpur
++                .orElse(BRAND_NEIL_ID), // Purpur //Neil
+             getManifestAttribute(manifest, ATTRIBUTE_BRAND_NAME)
+-                .orElse(BRAND_PURPUR_NAME), // Purpur
++                .orElse(BRAND_NEIL_NAME), // Purpur
+             SharedConstants.getCurrentVersion().getId(),
+             SharedConstants.getCurrentVersion().getName(),
+             getManifestAttribute(manifest, ATTRIBUTE_BUILD_NUMBER)
+@@ -63,7 +64,7 @@ public record ServerBuildInfoImpl(
+ 
+     @Override
+     public boolean isBrandCompatible(final @NotNull Key brandId) {
+-        return brandId.equals(this.brandId) || brandId.equals(BRAND_PAPER_ID) || brandId.equals(BRAND_PUFFERFISH_ID); // Purpur
++        return brandId.equals(this.brandId) || brandId.equals(BRAND_PAPER_ID) || brandId.equals(BRAND_PUFFERFISH_ID) || brandId.equals(BRAND_NEIL_ID); // Purpur
+     }
+ 
+     @Override

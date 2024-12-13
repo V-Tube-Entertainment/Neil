@@ -1,0 +1,25 @@
+name: Publish
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Git Repository
+        uses: actions/checkout@v3
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - name: Configure Git User Details
+        run: git config --global user.email "actions@github.com" && git config --global user.name "Github Actions"
+      - name: Apply Patches
+        run: ./gradlew applyPatches
+      - name: Build
+        run: ./gradlew createMojmapBundlerJar
+      - name: Publish
+        run: ./gradlew publish -PNeilRepoUsername=${{ secrets.NeilUsername }} -PNeilRepoPassword=${{ secrets.NeilPass }}
