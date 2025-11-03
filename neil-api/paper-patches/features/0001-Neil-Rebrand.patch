@@ -1,0 +1,40 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Gizmo0320 <gizmo0320@unleveledgaming.com>
+Date: Sat, 1 Nov 2025 17:09:39 -0500
+Subject: [PATCH] Neil-Rebrand
+
+
+diff --git a/src/main/java/io/papermc/paper/ServerBuildInfo.java b/src/main/java/io/papermc/paper/ServerBuildInfo.java
+index fb1fe2651e53a9bf46b3632c638e13eea9dcda93..c465ac56df0345ec4098068ec145d9e2f1985a1e 100644
+--- a/src/main/java/io/papermc/paper/ServerBuildInfo.java
++++ b/src/main/java/io/papermc/paper/ServerBuildInfo.java
+@@ -25,6 +25,11 @@ public interface ServerBuildInfo {
+      */
+     Key BRAND_PURPUR_ID = Key.key("purpurmc", "purpur");
+     // Purpur end
++    // Neil start
++    /**
++     * The brand id for Neil.
++     */
++    Key BRAND_NEIL_ID = Key.key("envarcade","neil");
+     /**
+      * Gets the {@code ServerBuildInfo}.
+      *
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index bf664ec7a3974abdb7fd3266b08803a02cb05929..e940081589f6aca89aec394ca163c12c8616037e 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -2436,6 +2436,13 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+         }
+         // Purpur end
+ 
++        // Neil start
++        @NotNull
++        public org.bukkit.configuration.file.YamlConfiguration getNeilConfig() {
++            throw new UnsupportedOperationException("Not supported yet.");
++        }
++        // Neil end
++
+         /**
+          * Sends the component to the player
+          *
