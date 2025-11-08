@@ -52,7 +52,7 @@ index a5a7334f7a1f147945079f20aa04b4f317d9e94c..f6c906a82f2dba9b8ef2c795a13fd728
          try {
              try (final BufferedReader reader = Resources.asCharSource(
 -                URI.create("https://api.purpurmc.org/v2/purpur/" + build.minecraftVersionId()).toURL(), // Purpur - Rebrand
-+                URI.create("https://api.envarcade.com/v2/" + build.minecraftVersionId()).toURL(), // Purpur - Rebrand // Neil
++                URI.create("https://api.envarcade.dev/v2/" + build.minecraftVersionId()).toURL(), // Purpur - Rebrand // Neil
                  StandardCharsets.UTF_8
              ).openBufferedStream()) {
                  final JsonObject json = new Gson().fromJson(reader, JsonObject.class);
