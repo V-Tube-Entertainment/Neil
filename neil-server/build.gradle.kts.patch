@@ -81,7 +81,7 @@
              "Build-Number" to (build ?: ""),
              "Build-Time" to buildTime.toString(),
              "Git-Branch" to gitBranch,
-@@ -386,22 +_,41 @@
+@@ -386,22 +_,36 @@
      mainClass.set(null as String?)
  }
  
@@ -92,11 +92,6 @@
 +fill {
 +    // Where to send requests
 +    apiUrl("https://api.envarcade.dev")
-+
-+    // How to authenticate – replace with your actual token handling
-+    // (e.g. from env or gradle.properties instead of hardcoding)
-+    val token = System.getenv("FILL_API_TOKEN")
-+    apiToken(token)
 +
 +    // Project & version identity on Fill
 +    project("neil")
