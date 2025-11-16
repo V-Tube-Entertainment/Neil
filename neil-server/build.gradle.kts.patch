@@ -50,15 +50,17 @@
      }
  }
  val log4jPlugins = sourceSets.create("log4jPlugins") {
-@@ -154,7 +_,7 @@
+@@ -154,8 +_,8 @@
  }
  
  dependencies {
 -    implementation(project(":purpur-api")) // Purpur
+-    implementation("ca.spottedleaf:concurrentutil:0.0.7")
 +    implementation(project(":neil-api")) // Purpur // Neil
-     implementation("ca.spottedleaf:concurrentutil:0.0.7")
++    implementation("ca.spottedleaf:concurrentutil:0.0.5")
      implementation("org.jline:jline-terminal-ffm:3.27.1") // use ffm on java 22+
      implementation("org.jline:jline-terminal-jni:3.27.1") // fall back to jni on java 21
+     implementation("net.minecrell:terminalconsoleappender:1.3.0")
 @@ -228,14 +_,14 @@
          val gitBranch = git.exec(providers, "rev-parse", "--abbrev-ref", "HEAD").get().trim()
          attributes(
@@ -79,3 +81,53 @@
              "Build-Number" to (build ?: ""),
              "Build-Time" to buildTime.toString(),
              "Git-Branch" to gitBranch,
+@@ -386,22 +_,41 @@
+     mainClass.set(null as String?)
+ }
+ 
+-/* fill { // Purpur - we don't use fill
+-    project("paper")
+-    versionFamily(paperweight.minecraftVersion.map { it.split(".", "-").takeWhile { part -> part.toIntOrNull() != null }.take(2).joinToString(".") })
+-    version(paperweight.minecraftVersion)
++fill {
++    // Where to send requests
++    apiUrl("https://api.envarcade.dev")
++
++    // How to authenticate – replace with your actual token handling
++    // (e.g. from env or gradle.properties instead of hardcoding)
++    val token = System.getenv("FILL_API_TOKEN")
++    apiToken(token)
++
++    // Project & version identity on Fill
++    project("neil")
++    versionFamily("1.21")
++    version("1.21.10")
+ 
+     build {
++        // Jenkins build number as the Fill build id
++        val buildNumber = System.getenv("BUILD_NUMBER")?.toIntOrNull() ?: 1
++        id = buildNumber
++
+         channel = BuildChannel.STABLE
+ 
+         downloads {
+-            register("server:default") {
+-                file = tasks.createMojmapPaperclipJar.flatMap { it.outputZip }
+-                nameResolver.set { project, _, version, build -> "$project-$version-$build.jar" }
++            // Name of this downloadable artifact
++            register("server") {
++                // The file to upload: the server jar produced by this module
++                file = tasks.jar.get().archiveFile
++
++                // How it will be named on Fill
++                nameResolver.set { project, _, version, build ->
++                    "$project-$version-$build.jar"
++                }
+             }
+         }
+     }
+-} */ // Purpur - we don't use fill
++}
+ 
+ // tasks.register("rebuildMinecraftSourcesWithGit") {
+ //     group = "temp"
