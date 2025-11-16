@@ -92,8 +92,8 @@
 +fill {
 +    // Where to send requests
 +    apiUrl("https://api.envarcade.dev")
-+    val fillToken = System.getenv("FILL_API_TOKEN")
-+    apiToken(fillToken)
++
++    apiToken = providers.gradleProperty("fillApiToken").orNull
 +
 +    // Project & version identity on Fill
 +    project("neil")
